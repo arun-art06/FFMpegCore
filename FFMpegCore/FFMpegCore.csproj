@@ -3,13 +3,20 @@
   <PropertyGroup>
     <IsPackable>true</IsPackable>
     <Description>A .NET Standard FFMpeg/FFProbe wrapper for easily integrating media analysis and conversion into your .NET applications</Description>
-    <PackageVersion>5.1.0</PackageVersion>
+    <PackageVersion>5.2.1</PackageVersion>
     <PackageOutputPath>../nupkg</PackageOutputPath>
     <PackageReleaseNotes>
     </PackageReleaseNotes>
     <PackageTags>ffmpeg ffprobe convert video audio mediafile resize analyze muxing</PackageTags>
-    <Authors>Malte Rosenbjerg, Vlad Jerca, Max Bagryantsev</Authors>
+    <Authors>Adigielite</Authors>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <Title>Adigielite FFMpegCore</Title>
+    <PackageId>FFMpegCore</PackageId>
+    <AssemblyVersion>5.2.0.1</AssemblyVersion>
+    <Version>5.2.0</Version>
+    <RepositoryUrl>https://github.com/arun-art06/FFMpegCore</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/arun-art06/FFMpegCore</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>

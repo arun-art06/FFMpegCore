@@ -20,6 +20,7 @@ namespace FFMpegCore
         private TimeSpan? _totalTimespan;
         private FFMpegLogLevel? _logLevel;
 
+        //hello
         internal FFMpegArgumentProcessor(FFMpegArguments ffMpegArguments)
         {
             _configurations = new List<Action<FFOptions>>();
@@ -135,6 +136,28 @@ namespace FFMpegCore
             return HandleCompletion(throwOnError, processResult?.ExitCode ?? -1, processResult?.ErrorData ?? Array.Empty<string>());
         }
 
+        public async Task<(bool, IProcessResult?)> ProcessAsynchronouslyWithPocessReference(bool throwOnError = true, FFOptions? ffMpegOptions = null)
+        {
+            var options = GetConfiguredOptions(ffMpegOptions);
+            var processArguments = PrepareProcessArguments(options, out var cancellationTokenSource);
+
+            IProcessResult? processResult = null;
+            try
+            {
+                processResult = await Process(processArguments, cancellationTokenSource).ConfigureAwait(false);
+            }
+            catch (OperationCanceledException)
+            {
+                if (throwOnError)
+                {
+                    throw;
+                }
+            }
+
+            var result = HandleCompletion(throwOnError, processResult?.ExitCode ?? -1, processResult?.ErrorData ?? Array.Empty<string>());
+            return (result,processResult);
+        }
+
         private async Task<IProcessResult> Process(ProcessArguments processArguments, CancellationTokenSource cancellationTokenSource)
         {
             IProcessResult processResult = null!;
@@ -155,8 +178,7 @@ namespace FFMpegCore
                 }
             }
 
-            CancelEvent += OnCancelEvent;
-
+            CancelEvent += OnCancelEvent; 
             try
             {
                 await Task.WhenAll(instance.WaitForExitAsync().ContinueWith(t =>

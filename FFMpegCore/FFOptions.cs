@@ -1,6 +1,13 @@
 ﻿using System.Text;
 using FFMpegCore.Enums;
-
+//https://loic-sharma.github.io/BaGet/
+//https://github.com/idoop/docker-nuget-server?tab=readme-ov-file
+//https://github.com/NuGet/docs.microsoft.com-nuget/blob/main/docs/quickstart/create-and-publish-a-package-using-visual-studio-net-framework.md
+//cd C:\git\FFMpegCore\FFMpegCore
+//nuget spec FFMpegCore.csproj
+//--nuget pack
+//dotnet pack 
+//nuget push C:\git\FFMpegCore\nupkg\FFMpegCore.5.1.0.nupkg -source http://185.229.119.249:5000/ -apikey Ahd3kld993kdlo30873483
 namespace FFMpegCore
 {
     public class FFOptions : ICloneable
